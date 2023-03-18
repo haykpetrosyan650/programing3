@@ -1,5 +1,6 @@
+let LivingCreature = require("./LivingCreature")
 
-class GrassEater extends LivingCreature  {
+module.exports = class GrassEater extends LivingCreature  {
     constructor(x, y) {
         super(x,y)
         this.energy = 19;
@@ -22,16 +23,15 @@ class GrassEater extends LivingCreature  {
 
     chooseCell(char) {
         this.getNewCoordinates()
-        var found = [];
+    
         return super.chooseCell(char)
     }
 
     mul() {
         this.multiply++;
-        var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
-
-        console.log(emptyCells);
+        var emptyCell = this.chooseCell(0);
+        var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
+        console.log(emptyCell);
         if (newCell && this.multiply >= 10) {
             var newX = newCell[0];
             var newY = newCell[1];

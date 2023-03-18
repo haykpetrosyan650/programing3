@@ -1,5 +1,6 @@
+let LivingCreature = require("./LivingCreature")
 
-class Rus extends LivingCreature {
+module.exports = class Rus extends LivingCreature {
     constructor(x, y) {
         super(x,y)
         this.multiply = 0;
@@ -41,8 +42,8 @@ class Rus extends LivingCreature {
 
 
     eat() {
-        var emptyCells = this.chooseCell(2, 3)
-        var newCell = random(emptyCells);
+        var emptyCell = this.chooseCell(2, 3)
+        var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
 
         if (newCell) {
 

@@ -1,5 +1,6 @@
+let LivingCreature = require("./LivingCreature")
 
-class Amn extends LivingCreature {
+module.exports = class Amn extends LivingCreature {
     constructor(x, y) {
         super(x,y)
         this.multiply = 0;
@@ -37,8 +38,8 @@ class Amn extends LivingCreature {
 
 
     eat() {
-        var emptyCells = this.chooseCell(1)
-        var newCell = random(emptyCells);
+        var emptyCell = this.chooseCell(1)
+        var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
 
         if (newCell) {
 

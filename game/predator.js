@@ -1,5 +1,6 @@
+let LivingCreature = require("./LivingCreature")
 
-class Predator extends LivingCreature  {
+module.exports = class Predator extends LivingCreature  {
     constructor(x, y) {
         super(x,y)
         this.energy = 3;
@@ -23,15 +24,14 @@ class Predator extends LivingCreature  {
     }
 
     chooseCell(character) {
-        
-        var found = [];
+
        return super.chooseCell(character)
     }
 
     mul() {
         this.multiply++;
-        var emptyCells = this.chooseCell(2);
-        var newCell = random(emptyCells);
+        var emptyCell = this.chooseCell(2);
+        var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
 
         console.log(emptyCells);
         if (newCell && this.multiply >= 10) {
