@@ -37,6 +37,12 @@ module.exports = class Amn extends LivingCreature {
     }
 
 
+    random(ch){
+        let found = this.chooseCell(ch);
+        let result = Math.floor(Math.random()*found.length)
+        return found[result];
+        }
+
     eat() {
         var emptyCell = this.chooseCell(1)
         var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
