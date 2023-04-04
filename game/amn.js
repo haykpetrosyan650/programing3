@@ -73,3 +73,9 @@ module.exports = class Amn extends LivingCreature {
     }
 
 }
+
+
+
+
+
+// jhdfbvhbd,vn dhfmvbvmnehfv
