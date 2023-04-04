@@ -1,3 +1,6 @@
+var socket = io()
+
+
 // var grassArr = []
 // var grassEaterArr = []
 // var predatorArr = []
@@ -80,7 +83,8 @@ var side = 35;
 
 function setup(){
     frameRate(7)
-     createCanvas(matrix[0].length * side, matrix.length * side);
+     createCanvas(50 * side, 50 * side);
+        
 
     //    for(var y = 0 ; y < matrix.length ;y++){
     //         for(var x = 0; x < matrix[y].length;x++){
@@ -109,7 +113,7 @@ function setup(){
     //    }
 }
 
-function draw(){
+function changeColor(matrix){
        for(var y = 0; y < matrix.length; y++){
             for(var x = 0; x < matrix[y].length;x++){
                      if(matrix[y][x] == 1){
@@ -117,11 +121,13 @@ function draw(){
                      }else if(matrix[y][x] == 2){
                          fill("yellow") // adrbejan
                   }else if(matrix[y][x] == 3){
-                    fill(238,25,195) // Rusastan
+                    fill("pink") // Rusastan
              }else if (matrix[y][x] == 4) {
                  fill("red") // turq
              }else if (matrix[y][x] == 5) {
                 fill("blue") // Hayastan
+             }else if (matrix[y][x] == 7) {
+                fill(255, 204, 100) // nato
              } else {
                           fill("gray")
                      }
@@ -152,4 +158,19 @@ function draw(){
     //     AmnArr[j].eat()
     //     AmnArr[j].mul()
     // } 
+    socket.on("send datas" ,function(counts){
+        document.getElementById("grass").innerHTML = counts.grass;
+        document.getElementById("grasseater").innerHTML = counts.GrassEater;
+        document.getElementById("predator").innerHTML = counts.predator;
+        document.getElementById("rus").innerHTML = counts.human;
+        document.getElementById("amn").innerHTML = counts.killer;
+        document.getElementById("nato").innerHTML = counts.terminator;
+    
+    
+    })
+
     }
+    socket.on("send matrix",changeColor)
+
+   
+  

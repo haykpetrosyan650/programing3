@@ -18,6 +18,20 @@ module.exports = class Rus extends LivingCreature {
 
         ];
     }
+ 
+
+
+    random(ch,ch1){
+        let found = this.chooseCell(ch);
+        let found1 = this.chooseCell(ch1);
+       let finalFound = found.concat(found1)
+
+        let result = Math.floor(Math.random()*finalFound.length)
+        return finalFound[result];
+        }
+
+
+
     chooseCell(char, char1) {
         var found = [];
 
@@ -42,8 +56,11 @@ module.exports = class Rus extends LivingCreature {
 
 
     eat() {
-        var emptyCell = this.chooseCell(2, 3)
-        var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
+        // var emptyCell = this.chooseCell(2,3)
+      
+        let newCell = this.random(2,3)
+
+        // var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
 
         if (newCell) {
 
@@ -74,11 +91,12 @@ module.exports = class Rus extends LivingCreature {
     }
     move() {
         this.energy--
-        var emptyCells = this.chooseCell(0)
-        var newCell = random(emptyCells);
+        // var emptyCells = this.chooseCell(0)
+        // var newCell = random(emptyCells);
+        let newCell = this.random(0)
 
         if (newCell && this.energy >= 0) {
-            console.log(newCell)
+            // console.log(newCell)
             var newX = newCell[0]
             var newY = newCell[1]
             matrix[newY][newX] = matrix[this.y][this.x]
@@ -103,10 +121,10 @@ module.exports = class Rus extends LivingCreature {
     }
     mul() {
         this.multiply++;
-        var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        // var emptyCells = this.chooseCell(0);
+        // var newCell = random(emptyCells);
 
-        console.log(emptyCells);
+        // console.log(emptyCells);
         if (newCell && this.multiply >= 15) {
             var newX = newCell[0];
             var newY = newCell[1];

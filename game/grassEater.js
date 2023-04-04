@@ -1,9 +1,9 @@
 let LivingCreature = require("./LivingCreature")
 
-module.exports = class GrassEater extends LivingCreature  {
+module.exports = class GrassEater extends LivingCreature {
     constructor(x, y) {
-        super(x,y)
-        this.energy = 19;
+        super(x, y)
+        this.energy = 8;
         this.multiply = 0
         this.directions = [];
     }
@@ -21,17 +21,26 @@ module.exports = class GrassEater extends LivingCreature  {
         ];
     }
 
+    random(ch) {
+        let found = this.chooseCell(ch);
+        let result = Math.floor(Math.random() * found.length)
+        return found[result];
+    }
+
     chooseCell(char) {
         this.getNewCoordinates()
-    
         return super.chooseCell(char)
     }
 
+
     mul() {
         this.multiply++;
-        var emptyCell = this.chooseCell(0);
-        var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
-        console.log(emptyCell);
+        // var emptyCell = this.chooseCell(0);
+        // var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
+        // console.log(emptyCell);
+
+        var newCell = this.random(0,1)
+
         if (newCell && this.multiply >= 10) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -45,11 +54,10 @@ module.exports = class GrassEater extends LivingCreature  {
 
     move() {
         this.energy -= 3
-        var emptyCell = this.chooseCell(0)
-        var newCell = random(emptyCell)
+        // var emptyCell = this.chooseCell(0)
+        var newCell = this.random(0)
 
         if (newCell && this.energy >= 0) {
-            console.log(newCell)
             var newX = newCell[0]
             var newY = newCell[1]
             matrix[newY][newX] = matrix[this.y][this.x]
@@ -65,9 +73,10 @@ module.exports = class GrassEater extends LivingCreature  {
     }
 
     eat() {
-        var emptyCell = this.chooseCell(1)
-        var newCell = random(emptyCell)
 
+
+        // var emptyCell = this.chooseCell(1)
+        var newCell = this.random(1)
         if (newCell) {
             this.energy++
             var newX = newCell[0]
@@ -82,6 +91,9 @@ module.exports = class GrassEater extends LivingCreature  {
                     grassArr.splice(i, 1)
                     break;
                 }
+            }
+            if (this.energy >= 15) {
+                this.mul()
             }
         }
         else {

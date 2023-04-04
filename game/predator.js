@@ -1,8 +1,8 @@
 let LivingCreature = require("./LivingCreature")
 
-module.exports = class Predator extends LivingCreature  {
+module.exports = class Predator extends LivingCreature {
     constructor(x, y) {
-        super(x,y)
+        super(x, y)
         this.energy = 3;
         this.multiply = 0
         this.directions = [];
@@ -11,29 +11,32 @@ module.exports = class Predator extends LivingCreature  {
     getNewCoordinates() {
         this.directions = [
             [this.x, this.y - 1],
-            [this.x - 1, this.y],
+            [this.x + 1, this.y - 1],
             [this.x + 1, this.y],
-            [this.x - 2, this.y + 1],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1],
-            [this.x + 2, this.y + 1],
-
-
         ];
     }
 
-    chooseCell(character) {
 
-       return super.chooseCell(character)
+    random(ch) {
+        let found = this.chooseCell(ch);
+        let result = Math.floor(Math.random() * found.length)
+        return found[result];
     }
+
+    chooseCell(char) {
+        this.getNewCoordinates()
+        return super.chooseCell(char)
+    }
+
 
     mul() {
         this.multiply++;
-        var emptyCell = this.chooseCell(2);
-        var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
+        // var emptyCell = this.random(2);
+        // var newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
 
-        console.log(emptyCells);
+        let newCell = this.random(2)
+
+        // console.log(emptyCells);
         if (newCell && this.multiply >= 10) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -47,11 +50,13 @@ module.exports = class Predator extends LivingCreature  {
 
     move() {
         this.energy--
-        var emptyCells = this.chooseCell(2)
-        var newCell = random(emptyCells);
+        // var emptyCells = this.chooseCell(2)
+        // var newCell = random(emptyCells);
+        var newCell = this.random(2)
+        // console.log(newCell);
 
         if (newCell && this.energy >= 0) {
-            console.log(newCell)
+            // console.log(newCell)
             var newX = newCell[0]
             var newY = newCell[1]
             matrix[newY][newX] = matrix[this.y][this.x]

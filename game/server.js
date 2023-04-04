@@ -4,8 +4,8 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
 app.use(express.static("."));
-app.get('/', function (req, res) {
-res.redirect('index.html');
+app.get('/', function ( req,res) {
+res.redirect('index1.html');
 });
 
 server.listen(3000);
@@ -14,7 +14,7 @@ server.listen(3000);
 
 
 
-function matrixGenerator(matrixSize,grassCount,grEatCount,predatorCount,RusCount,AmnCount){
+function matrixGenerator(matrixSize,grassCount,grEatCount,predatorCount,RusCount,AmnCount,natoCount){
    
     let matrix = [];
 
@@ -77,11 +77,22 @@ function matrixGenerator(matrixSize,grassCount,grEatCount,predatorCount,RusCount
       
            }
     }
- return matrix ;     
+    for (var i = 0; i <natoCount; i++) {
+
+      let x  = Math.floor(Math.random() * matrixSize)
+      let y  = Math.floor(Math.random() * matrixSize)
+       
+              if (matrix[y][x] == 0) {
+                  matrix[y][x] = 7
+      
+           }
+    }
+     io.emit("send matrix",matrix)
+     return matrix ; 
 }
 
 
- matrix = matrixGenerator(30,30,30,25,6,6);
+ matrix = matrixGenerator(30,80,80,25,9,9,1);
 
 
  
@@ -90,6 +101,7 @@ grassEaterArr = []
 predatorArr = []
 RusArr = []
 AmnArr = []
+natoArr = []
 
 
 
@@ -98,6 +110,7 @@ const GrassEater = require("./grassEater")
 const Predator = require("./predator")
 const Amn = require("./amn")
 const Rus = require("./rus")
+const nato = require("./nato")
 
 
 
@@ -122,11 +135,17 @@ function fakeSetup() {
                         RusArr.push(Ru)
                    }else  if(matrix[y][x] == 5){
                     var Am = new Amn (x,y)
+                    AmnArr.push(Am)
 
-                    RusArr.push(Am)
-               }
+               }else  if(matrix[y][x] == 7){
+                var nt = new nato (x,y)
+                natoArr.push(nt)
+           }
         }
    }
+   io.emit("send matrix",matrix)
+
+
 }
 
 
@@ -135,25 +154,32 @@ fakeSetup()
 
 
 function mool() {
-    for(var i in grassArr){
-        grassArr[i].mul()
-  }
+      for(var i in grassArr){
+            grassArr[i].mul()
+     }
 
-  for (let j in grassEaterArr) {
-     grassEaterArr[j].mul()
-     grassEaterArr[j].eat()
- }
+     for (let j in grassEaterArr) {
 
- for (let j in predatorArr) {
-     predatorArr[j].mul()
+       grassEaterArr[j].eat()
+    }
 
- }
- for (let j in RusArr) {
-     RusArr[j].eat()
+     for (let j in predatorArr) {
+       predatorArr[j].mul()
+       predatorArr[j].move()
+
+     }
+     for (let j in RusArr) {
+       RusArr[j].eat()
     
- }
- for (let j in AmnArr) {
-   AmnArr[j].eat()
-   AmnArr[j].mul()
-} }
- setInterval(mool,500)
+     }
+    for (let j in AmnArr) {
+    AmnArr[j].eat()
+    //  AmnArr[j].mul()
+    }
+    for (let j in natoArr) {
+      // natoArr[j].eat()
+       natoArr[j].mul()
+      }  
+    io.emit("send matrix",matrix)
+}
+setInterval(mool,500)
