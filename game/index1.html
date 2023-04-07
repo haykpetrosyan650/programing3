@@ -58,42 +58,145 @@
     <script src="script.js"></script>
 
 
- <table class="table" style="color: aliceblue;">
-        <tr>
-            <th>grass</th>
-            <th>grassEater</th>
-            <th>predator</th>
-            <th>rus</th>
-            <th>amn</th>
-            <th>nato</th>
-        </tr>
-  <tr>
-      <td id="grass"></td>
-      <td id="grasseater"></td>
-      <td id="predator"></td>
-      <td id="rus"></td>
-      <td id="amn"></td>
-      <td id="nato"></td>
-  </tr>
-    </table>
-    <div class="button-container">
-        <button  class="button button-1">հայաբնակ</button>
-        <button  class="button button-2">ադրբեջան</button>
-        <button  class="button button-3">ռուսաստան</button>
-        <button  class="button button-4">թուրքիա</button>
-        <button  class="button button-5">Հայաստան</button>
-        <button  class="button button-5">նատո</button>
-        <!-- ----------------------------------------------- -->
-      </div>
-
-      <div class="btn-wheather">
-        <button onclick="Summer()" class="buttonk button-7">Ամառ</button>
-        <button onclick="Winter()" class="buttonk button-9">Ձմեռ</button>
-    </div> 
-
     </header>
 
 
 </body>
 
+</html>
+<h1>Game of life</h1>
+<div class="abouts">
+  <div class="grass">
+    <span class="spanIcon">
+    </span>
+        <h2>Grass</h2>
+          <p>Grass - Spawn in nearby 8 cages.</p>
+          <button class="addButton"onclick="addGrass()">
+            <span>Add Grass</span>
+          </button>
+    </div>
+      <div class="grassEater">
+        <span class="spanIcon">🐇
+        </span>
+        <h2>Herbivores</h2>
+          <p>Herbivores - Live by eating grasses.</p>
+          <button class="   addButton"onclick="addGrassEater()">
+          <span>Add GrassEater</span>
+        </button>
+      </div>
+    
+      <div class="predator">
+        <span class="spanIcon">👽
+          
+        </span>
+        <h2>predator</h2>
+          <p>predator - Eats herbivores.</p>
+      <button class="addButton"onclick="addPredator()"> <span>Add Predator</span></button>
+
+        </div>
+    
+        <div class="Rus">
+          <span class="spanIcon">💧
+          </span>
+          
+      <h2>Rus</h2>
+      <p>Rus - Distributed and gives out grass.</p>
+      <button class="addButton"onclick="addRus()"> <span>Add Rus</span></button>
+
+    </div>
+
+    <div class="Amn">
+      <span class="spanIcon">💣
+      </span>
+      <h2>Mine</h2>
+          <p>Mine - Placed in random boxes spread.</p>
+      <button class="addButton"onclick="addAmn()"> <span>Add Amn</span></button>
+
+    </div>
+    <div class="nato">
+      <span class="spanIcon">💐
+      </span>
+      
+  <h2>nato</h2>
+  <p>nato Who eats flowers - lives long.</p>
+  <button class="addButton" onclick="addNato()"><span>Add Nato</span></button>
+
+</div>
+
+</div>
+
+ <div class="counters">
+  <div class="col-sm-3">
+   <div class="counter-count">
+     <span class="count" id="Grass"> </span>
+     <h3 class="title">Grass</h3>
+   </div>
+ </div>
+ <div class="col-sm-3">
+   <div class="counter-count">
+     <span class="count" id="GrassEater"> </span>
+     <h3 class="title">GrassEater</h3>
+   </div>
+ </div>
+ <div class="col-sm-3">
+   <div class="counter-count">
+     <span class="count" id="Predator"> </span>
+     <h3 class="title">Predator</h3>
+   </div>
+ </div>
+ <div class="col-sm-3">
+  <div class="counter-count">
+    <span class="count" id="Rus"> </span>
+    <h3 class="title">Rus</h3>
+  </div>
+</div>
+<div class="col-sm-3">
+  <div class="counter-count">
+    <span class="count" id="Amn"> </span>
+    <h3 class="title">Amn</h3>
+  </div>
+</div>
+<div class="col-sm-3">
+  <div class="counter-count">
+    <span class="count" id="Noto"> </span>
+    <h3 class="title">Nato</h3>
+  </div>
+</div>
+
+</div>
+
+<!-- 
+<div class="content1">
+ <button class="weatherButton" onclick="Weathers(1)">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>Winter
+</button>
+<button class="weatherButton" onclick="Weathers(2)">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>Summer
+</button>
+<button class="weatherButton" onclick="Weathers(3)">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>Autumn
+</button>
+<button class="weatherButton" onclick="Weathers(4)">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>Spring
+</button> -->
+<button class="Restart" onclick="restart()">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>Restart
+</button>
+</div>
+</body>
 </html>

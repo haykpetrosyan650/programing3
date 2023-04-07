@@ -137,6 +137,62 @@ function changeColor(matrix){
             }
        }
 
+
+
+
+
+
+       function updateColor(matrix) {
+    
+        for (let y = 0; y < matrix.length; y++) {
+          for (let x = 0; x < matrix[y].length; x++) {
+              var tBot = side - side * 0.3
+              textSize(tBot);
+                  if(matrix[y][x] == 1){
+                      fill (weather[0])
+                      rect (x * side , y * side ,side,side)
+                      text( x * side, y * side + tBot);
+  
+                  }else if (matrix[y][x] == 2){
+                      fill ("yellow")
+                      rect (x * side , y * side ,side,side)
+                      text( x * side, y * side + tBot)
+  
+                  }else if(matrix[y][x] == 3){
+                      fill ("#795548")
+                      rect (x * side , y * side ,side,side)
+                      text( x * side, y * side + tBot)
+  
+                  }else if(matrix[y][x] == 4){
+                      fill("blue")    
+                      rect (x * side , y * side ,side,side)
+                      text( x * side, y * side + tBot);
+  
+                  }else if(matrix[y][x] == 5){
+                      fill("black")
+                      rect (x * side , y * side ,side,side)
+                      text( x * side, y * side + tBot);
+  
+                  // }else if(matrix[y][x] == 6){
+                  //     fill("orange")
+                  //     rect (x * side , y * side ,side,side)
+                  //     text('💥', x * side, y * side + tBot)
+                  }else if(matrix[y][x] == 7){
+                      fill(weather[0])
+                      rect (x * side , y * side ,side,side)
+                      text( x * side, y * side + tBot)
+                  }
+                  else{
+                      fill ("gray")
+                      rect (x * side , y * side ,side,side)
+                  }
+          }
+            
+        }
+    
+    }
+
+
     //    for(var i in grassArr){
     //          grassArr[i].mul()
     //    }
@@ -158,19 +214,55 @@ function changeColor(matrix){
     //     AmnArr[j].eat()
     //     AmnArr[j].mul()
     // } 
-    socket.on("send datas" ,function(counts){
-        document.getElementById("grass").innerHTML = counts.grass;
-        document.getElementById("grasseater").innerHTML = counts.GrassEater;
-        document.getElementById("predator").innerHTML = counts.predator;
-        document.getElementById("rus").innerHTML = counts.human;
-        document.getElementById("amn").innerHTML = counts.killer;
-        document.getElementById("nato").innerHTML = counts.terminator;
+    // // socket.on("send datas" ,function(counts){
+    // //     document.getElementById("grass").innerHTML = counts.grass;
+    // //     document.getElementById("grasseater").innerHTML = counts.GrassEater;
+    // //     document.getElementById("predator").innerHTML = counts.predator;
+    // //     document.getElementById("rus").innerHTML = counts.human;
+    // //     document.getElementById("amn").innerHTML = counts.killer;
+    // //     document.getElementById("nato").innerHTML = counts.terminator;
     
     
-    })
-
+    // }
+// )
     }
-    socket.on("send matrix",changeColor)
+   
 
    
   
+    function restart(){
+        socket.emit("restart")
+    }
+    function addGrass() {
+        socket.emit("add Grass")
+    }
+    function addGrassEater() {
+        socket.emit("add GrassEater")
+    }
+    function addPredator() {
+        socket.emit("add Predator")
+    }
+    function addRus() {
+       socket.emit("add Rus") 
+    }
+    function addAmn() {
+        socket.emit("add Amn ")
+    }
+    function addNato(){
+        socket.emit("add Nato")
+    }
+    
+    
+    
+    socket.on ("send datas", function(count){
+        let x = count.grass-count.jur
+        document.getElementById("Grass").innerHTML =x;
+        document.getElementById("GrassEater").innerHTML = count.GrassEater;
+        document.getElementById("Predator").innerHTML = count.Predator;
+        document.getElementById("Rus").innerHTML = count.Rus;
+        document.getElementById("Amn").innerHTML = count.Amn;
+        document.getElementById("Nato").innerHTML = count.Nato;
+        
+    })
+    socket.on("send matrix")
+    

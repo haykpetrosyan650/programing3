@@ -1,6 +1,6 @@
 let LivingCreature = require("./LivingCreature")
 
-module.exports = class nato extends LivingCreature {
+module.exports = class Nato extends LivingCreature {
     constructor(x, y) {
         super(x, y)
         // this.multiply = 0;
